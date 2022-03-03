@@ -4,6 +4,7 @@ const moveCarRage = 10
 let moveSpeed = 3
 let createSpeed = 2000
 const obstacleList = []
+let score = 0
 let createObstacleInterval
 let moveObstacleInterval
 
@@ -41,7 +42,10 @@ class Obstacle {
 	}
 
 	move() {
-		if (this.y > 700) obstacleList.shift()
+		if (this.y > 700) {
+			score += this.width/10
+			obstacleList.shift()
+		}
 		else if (this.y > 500){
 			if (this.checkColision(this)) return stopGame()
 		}
