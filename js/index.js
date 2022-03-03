@@ -4,9 +4,18 @@ const moveCarRage = 10
 let moveSpeed = 3
 let createSpeed = 2000
 const obstacleList = []
-let score = 0
 let createObstacleInterval
 let moveObstacleInterval
+
+let score = {
+	value : 0,
+	draw(){
+		ctx.font = "30px Arial";
+		ctx.fillStyle = "white";
+		ctx.fillText(`Score: ${this.value}`, 70, 50);
+	}
+}
+
 
 const car = {
 	src: "images/car.png",
@@ -43,10 +52,10 @@ class Obstacle {
 
 	move() {
 		if (this.y > 700) {
-			score += this.width/10
+			score.value += this.width
 			obstacleList.shift()
 		}
-		else if (this.y > 500){
+		else if (this.y > 550){
 			if (this.checkColision(this)) return stopGame()
 		}
 		this.y += moveSpeed
@@ -75,6 +84,7 @@ function drawCanvas() {
 		obstacle.draw()
 	}
 	car.draw()
+	score.draw()
 }
 
 window.onload = () => {
